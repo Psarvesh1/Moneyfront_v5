@@ -234,3 +234,29 @@ export const getSchemeInvestmentDetail = async({id, sessionId, SchemeCode}) => {
     // console.log('dada'+ result.AbsoluteReturn)
     return result
 }
+
+export const getSchemeRecommendations = async ({id, sessionId}) => {
+    const data = `${id}|${sessionId}`
+
+    const encryptedData = Encrypt(data, process.env.key)
+
+    const url = `${process.env.API_BASE_URL}/api/Schemes/GetSchemeRecommendations`
+    const bodyParameters = {
+        ParamValue : encryptedData
+    }
+
+    console.log(encryptedData)
+    
+    let result = null
+    await api.post(
+        url,
+        bodyParameters,
+        // config
+    ).then(function(response){
+        result  = response.data
+    }).catch(function(error){
+        console.log(error.message)
+    })
+    // console.log('dada'+ result.AbsoluteReturn)
+    return result
+}

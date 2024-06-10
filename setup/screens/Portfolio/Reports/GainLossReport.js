@@ -2,14 +2,14 @@ import React, {useContext, useEffect, useState} from 'react'
 import { View, SafeAreaView, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import styled from 'styled-components';
-import {Button} from 'react-native-paper'
+import {Button, Divider} from 'react-native-paper'
 import UserContext from '../../../context/UserContext';
 import { getGainLossReport } from '../../../utils/api';
 import AuthContext from '../../../context/AuthContext';
 import SummaryCard from '../../../components/Collapsible/SummaryCard';
 import { GLSummaryCard } from '../../../components/GLSummaryCard';
 const GainLossReport = ({navigation}) => {
-  let {gainLossTransaction, setGainLossTransaction} = useContext(UserContext)
+  let {gainLossTransaction, setGainLossTransaction, gainLossSummary, setGainLossSummary} = useContext(UserContext)
   let {id, sessionId} = useContext(AuthContext)
 
   const [startDate, setStartDate] = useState(new Date());
@@ -19,9 +19,7 @@ const GainLossReport = ({navigation}) => {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false)
-  const [gainLossSummary, setGainLossSummary] = useState()
   
-
   useEffect(() => {
     let currentDate = new Date();
     currentDate.setFullYear(currentDate.getFullYear() - 1);
@@ -73,7 +71,7 @@ const GainLossReport = ({navigation}) => {
       const data = await getGainLossReport({id, sessionId, selectedStartDate, selectedEndDate})
       setGainLossSummary(data.GainLossSummaries)
       setGainLossTransaction(data.GainLossTransactionLists)
-      console.log(GainLossSummary)
+      console.log(gainLossSummary)
       setVisible(false)
     }catch(err){
       console.log(err)
@@ -117,43 +115,51 @@ const GainLossReport = ({navigation}) => {
         <Button
         textColor="green"
         mode="outlined"
+        labelStyle={{ marginHorizontal: 10, marginVertical: 10, color: '#fff' }}
         style={{
-          backgroundColor: '#FFF',
+          backgroundColor: 'green',
           borderColor: '#FFF',
-          marginTop: 20,
-          padding: 5,
+          marginTop: 10,
           borderRadius: 5,
+          width: '80%',
+          marginBottom: 10
         }}
         onPress={handleSubmit}>
         <BtnText>Get Reports</BtnText>
       </Button>
-
+      <View>
+        <Divider style={{marginBottom: 0}}/>
+      
         {visible ? <ActivityIndicatorElement/> : 
+        <View>
             <FlatList 
               scrollEnabled={true}
-              style={{marginBottom: 400}}
+              style={{marginBottom: 500}}
               data={gainLossSummary}
               renderItem={({item}) => 
-              <View>
               <GLSummaryCard 
-              Scheme={item.Scheme_Name}
-              TotalAmount={item.Purchase_Amount}
-              SellAmount={item.Sell_Amount}
-              LTGainLoss = {item.GL_LT_Debt}
-              STGainLoss ={item.GL_ST_Debt}
-              FolioNo ={item.Folio_Number}
-              navigation={navigation}
+                Scheme={item.Scheme_Name}
+                TotalAmount={item.Purchase_Amount}
+                SellAmount={item.Sell_Amount}
+                LTGainLoss = {item.GL_LT_Debt}
+                STGainLoss ={item.GL_ST_Debt}
+                FolioNo ={item.Folio_Number}
+                Fund_Name={item.Fund_Name}
+                navigation={navigation}
+                btn_flag={true}
               />
-              </View>
             }
             keyExtractor={item => item.Scheme}
-            ListEmptyComponent={<Text>No Data</Text>}
+            ListEmptyComponent={
+              <View style={styles.Nodata}>
+                <Text style={styles.NoDataTitle}>No Data Found!</Text>
+              </View>
+            }
             />
-            
+        </View>
         }
-
+        </View>
       </Container>
-
     </SafeAreaView>
 
   )
@@ -178,7 +184,9 @@ const ReportContainer = styled.View`
 
 const styles = StyleSheet.create({
   dateContainer: {
-      padding: 10,
+      padding: 5,
+      paddingLeft: 10,
+      paddingRight: 10,
       backgroundColor: 'transparent',
       borderRadius: 5,
       width: '100%',
@@ -198,6 +206,17 @@ const styles = StyleSheet.create({
   },
   activityIndicatorStyle: {
     marginTop: 20
+  },
+  Nodata: {
+    flex: 1,
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    height: 300
+  },
+  NoDataTitle: {
+    alignSelf: 'center',
+    fontSize: 18
   }
 })
 

@@ -50,7 +50,7 @@ const SchemeDetail = ({ route, navigation }) => {
     }
 
     const SchemeData = ({ SchemeName, Risk, Category, BenchMark, STANDARDR, SHARPR, 
-        LaunchDate, FundManager, MinInvestment, AUM }) => {
+        LaunchDate, FundManager, MinInvestment, AUM, Fund_Name }) => {
         return (
             <LinearGradient
                 useAngle

@@ -42,6 +42,8 @@ const SnapData = () => {
         setPie(data.ClientActualPortfolio.Actual)
         setHasInvestment(true)
         setFlag(true)
+        console.log(data.ClientActualPortfolio.Actual)
+
       }
     }catch(err){
       console.log(err)
@@ -142,17 +144,20 @@ const SnapData = () => {
           widthAndHeight={widthAndHeight}
           series={series}
           sliceColor={sliceColor}
-          coverRadius={0.55}
+          coverRadius={0.45}
           coverFill={'#fff'}
           style={{alignSelf: 'center', marginTop: 20}}
         />
         <View style={{alignItems: 'center', flexDirection: 'column', marginTop: 10}}>
+        
         {clientActualPortfolio && clientActualPortfolio.map((item) => (
-          <LegendContainer>
+          <LegendContainer>  
           <Legend style={{borderRadius: 10, backgroundColor: '#5a69bc'}} />
           <Text style={{textAlign: 'center', marginLeft: 5}}>{item.AssetType} : {item.AllocationPercentage}</Text>
           </LegendContainer>
+
         ))}
+
         </View>
         <MetaContainer>
         <Meta>Recommended:</Meta>

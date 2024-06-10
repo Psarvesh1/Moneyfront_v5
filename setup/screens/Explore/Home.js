@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import {Searchbar, Divider} from 'react-native-paper';
-import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Card from '../../components/Card';
 import data from '../../../utils/data/index.json';
 import {verticalScale, moderateScale } from '../../themes/metrics';
@@ -9,30 +9,14 @@ import { SafeAreaView } from 'react-native';
 import AuthContext from '../../context/AuthContext';
 import { searchSchemes } from '../../utils/api';
 import routes from '../../router-manager/routes';
+import SearchIcon from 'react-native-vector-icons/Ionicons'
 const Explore = ({navigation}) => {
-  let {id, sessionId} = useContext(AuthContext)
-  console.log('explore ' +sessionId)
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const [searchData, setSearchData] = useState()
-  
-  const handleSearch = async (text) => {
-    setSearchQuery(text)
-    try{
-      const data = await searchSchemes({id, sessionId, searchQuery})
-      setSearchData(data.List)
-      console.log(searchData)
-    }catch(err){
-      console.log(err)
-    }
-  }
-
-  console.log(data.Transact.name)
   return (
     <SafeAreaView>
     <Container>
       <Header>Explore</Header>
       <TouchableOpacity onPress={() => navigation.navigate(routes.SearchScheme)}>
-      <Searchbar
+      {/* <Searchbar
         placeholder="Search Mutual Funds"
         onChangeText={(text) => handleSearch(text)}
         value={searchQuery}
@@ -45,8 +29,13 @@ const Explore = ({navigation}) => {
           setSearchQuery()
           setSearchData(null)
         }}
-      />
+      /> */}
+      <View style={styles.searchBox}>
+        <SearchIcon name='search' size={19}/>
+        <Text style={styles.placeholder}>Search Mutual Funds</Text>
+      </View>
       </TouchableOpacity>
+      
       {/* <FlatList 
         style={{paddingBottom: 200}}
         data={searchData}
@@ -160,6 +149,18 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(10),
     padding: -20,
     borderRadius: moderateScale(10)
+  },
+  searchBox:{
+    flexDirection: 'row',
+    marginTop: verticalScale(10),
+    marginBottom: verticalScale(10),
+    padding: 15,
+    backgroundColor: '#eee8f4',
+    borderRadius: moderateScale(10)
+  },
+  placeholder: {
+    fontSize: 16,
+    marginLeft: 15
   }
 });
 

@@ -18,6 +18,7 @@ export const UserProvider = ({children}) => {
     const [clientSuggestedPortfolio, setClientSuggestedPortfolio] = useState(null)
     const [clientHoldingSummary, setClientHoldingSummary] = useState()
     const [gainLossTransaction, setGainLossTransaction] = useState()
+    const [gainLossSummary, setGainLossSummary] = useState()
     const [tab, setTab] = useState(0);
     const removeUser = () => {
         setPortfolioSummary(null)
@@ -57,7 +58,9 @@ export const UserProvider = ({children}) => {
         tab,
         setTab,
         gainLossTransaction,
-        setGainLossTransaction
+        setGainLossTransaction,
+        gainLossSummary,
+        setGainLossSummary
     }
     
     return(

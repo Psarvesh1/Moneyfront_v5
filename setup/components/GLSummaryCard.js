@@ -17,7 +17,7 @@ import routes from "../router-manager/routes"
 import { useNavigation } from "@react-navigation/native"
 
 
-export const GLSummaryCard = ({ Scheme, TotalAmount, SellAmount, LTGainLoss, STGainLoss, FolioNo }) => {    
+export const GLSummaryCard = ({ Scheme, TotalAmount, SellAmount, LTGainLoss, STGainLoss, FolioNo, Fund_Name, btn_flag }) => {    
     const navigation = useNavigation()
     return (
         <>
@@ -56,12 +56,13 @@ export const GLSummaryCard = ({ Scheme, TotalAmount, SellAmount, LTGainLoss, STG
                     {expanded ? <Icon name="eye-with-line" size={20} color='green' /> : <Icon name="eye" size={20} color='green' />}
                 </TouchableOpacity> */}
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate(routes.TransactionList)}>
+        {btn_flag ? <TouchableOpacity onPress={() => navigation.navigate(routes.TransactionList, {Fund_Name: Fund_Name})}>
             <View style ={styles.footer}>
                 <Icon name="eye" size={20} color='green' style={{marginRight: 10}}/>
                 <Text>View All Transactions</Text>
             </View>
-        </TouchableOpacity>
+        </TouchableOpacity>: null}
+        
         </>
     )
 }

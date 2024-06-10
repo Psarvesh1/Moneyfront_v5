@@ -14,7 +14,6 @@ const ComingSoon = () => {
         }
     }
     return(
-    <View style={styles.container}>
         <ImageBackground source={comingsoon} resizeMode="cover" style={styles.image}>
         <Text style={styles.text}>
         We're excited to have you try our Beta Version!
@@ -23,9 +22,7 @@ const ComingSoon = () => {
     <TouchableOpacity onPress={openURI}>
         <Text style={[styles.text, {marginTop: 10, color: 'green'}]}>Click Here to Visit</Text>
     </TouchableOpacity>
-
     </ImageBackground>
-  </View>
     )
 }
   
@@ -34,17 +31,18 @@ export default ComingSoon;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20
   },
   image: {
     flex: 1,
     justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10
+    padding: 20,
+    alignItems: 'center'
   },
   text: {
     color: '#000',
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 18
   },
 });
 

@@ -5,6 +5,7 @@ import AuthContext from '../../context/AuthContext';
 import { searchSchemes } from '../../utils/api';
 import { useNavigation } from '@react-navigation/native';
 import routes from '../../router-manager/routes';
+import { verticalScale, moderateScale } from '../../themes/metrics';
 const SearchScheme = ({navigation}) => {
     let { id, sessionId, authToken } = useContext(AuthContext)
     console.log(authToken)
@@ -110,7 +111,14 @@ const styles = StyleSheet.create({
     },
     schemeTitle: {
         fontSize: 18
-    }
+    },
+    search: {
+        marginTop: verticalScale(10),
+        width: '100%',
+        marginBottom: verticalScale(10),
+        padding: -20,
+        borderRadius: moderateScale(10)
+      },
 })
 
 export default SearchScheme

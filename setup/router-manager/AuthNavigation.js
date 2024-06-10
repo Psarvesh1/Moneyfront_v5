@@ -74,22 +74,16 @@ const AuthNavigation = (Stack) => {
         name={routes.SearchScheme}
         component={SearchScheme}
         options={{
-          headerShown: true,
-          headerBackTitle: 'Explore',
-          headerTitle: () => (
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Search Schemes</Text>
-          ),
+          headerShown: true, headerBackTitle: 'Explore', headerTitle: 'Search Schemes',
+          headerTintColor: '#068015',
         }}
       />
       <Stack.Screen
         name={routes.SchemeDetail}
         component={SchemeDetail}
         options={{
-          headerShown: true,
-          headerBackTitle: 'Explore',
-          headerTitle: () => (
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}></Text>
-          ),
+          headerShown: true, headerBackTitle: 'Back', headerTitle: '',
+          headerTintColor: '#068015',
         }}
       />
       <Stack.Screen
@@ -187,18 +181,26 @@ const AuthNavigation = (Stack) => {
       <Stack.Screen
         name={routes.Portfolio_Summary}
         component={PortfolioSummary}
-        options={{ headerShown: true }}
+        options={{
+          headerShown: true, headerBackTitle: 'Back', headerTitle: 'Portfolio_Summary',
+          headerTintColor: '#068015',
+        }}
       />
       <Stack.Screen
         name={routes.GainLossReport}
         component={GainLossReport}
-        options={{ headerShown: true }}
+        options={{
+          headerShown: true, headerBackTitle: 'Back', headerTitle: 'Gain/Loss Statement',
+          headerTintColor: '#068015',
+        }}
       />
       <Stack.Screen
         name={routes.TransactionList}
         component={TransactionList}
-        options={{ headerShown: true }}
-      />
+        options={{
+          headerShown: true, headerBackTitle: 'Back', headerTitle: 'View All Transactions',
+          headerTintColor: '#068015',
+        }} />
       {/* <Stack.Screen
         name={routes.Report_Details}
         component={ReportDetail}

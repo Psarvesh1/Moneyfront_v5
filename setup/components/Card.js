@@ -16,7 +16,6 @@ const Card = ({ title, meta, style, name, titleStyle, metaStyle, screen, height}
     <CardTitle style={titleStyle}>{title}</CardTitle>
     <CardMeta style={metaStyle}>{meta}</CardMeta>
     </View>
-    
     </CardContainer>
     </TouchableOpacity>
   );

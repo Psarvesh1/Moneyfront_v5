@@ -43,7 +43,7 @@ export const CollapsableContainer = ({ children, expanded }) => {
   )
 }
 
-export const TransactionCard = ({ Scheme, TotalAmount, InvestedAmount, RedeemedAmount, PresentUnits, AvgPrice, PresentValue, UnRealisedGainLoss, RealisedGainLoss, XIRR, AbsoluteReturn, WeightedAvgDays }) => {
+export const TransactionCard = ({Transaction_Date, Purchase_Amount, Purchase_Price, Units, Sell_Rate, GL_LT_Debt, Sell_Amount, GL_ST_Debt }) => {
     const [expanded, setExpanded] = useState(false)
     
     const onItemPress = () => {
@@ -52,39 +52,34 @@ export const TransactionCard = ({ Scheme, TotalAmount, InvestedAmount, RedeemedA
     return (
         <View style={expanded ? styles.containerCollapsed : styles.containerNotCollapsed}>
             <>
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>{Scheme}</Text>
-                    {/* <View>
-                    {expanded ? <Icon name='angle-up' size={20} color='#FFF'/> : <Icon name='angle-down' size={20} color='#FFF'/>}
-                    </View> */}
-                </View>
+                
                 <View style={styles.content}>
                     <View style={styles.column}>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Total Amount</Text>
-                            <Text style={styles.value}>{TotalAmount}</Text>
+                            <Text style={styles.title}>Purchase Date</Text>
+                            <Text style={styles.value}>{Transaction_Date}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Redeemed Amount</Text>
-                            <Text style={[styles.value, { color: '#47b994' }]}>{RedeemedAmount}</Text>
+                            <Text style={styles.title}>Purchase Unit</Text>
+                            <Text style={styles.value}>{Units}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Avg. Price</Text>
-                            <Text style={styles.value}>{AvgPrice}</Text>
+                            <Text style={styles.title}>Purchase Nav</Text>
+                            <Text style={styles.value}>{Purchase_Price}</Text>
                         </View>
                     </View>
                     <View style={styles.column}>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Invested Amount</Text>
-                            <Text style={styles.value}>{InvestedAmount}</Text>
+                            <Text style={styles.title}>Purchase Price</Text>
+                            <Text style={styles.value}>{Purchase_Price}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Present Units</Text>
-                            <Text style={styles.value}>{PresentUnits}</Text>
+                            <Text style={styles.title}>Sell Units</Text>
+                            <Text style={styles.value}>{Units}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Present Value</Text>
-                            <Text style={styles.value}>{PresentValue}</Text>
+                            <Text style={styles.title}>Sell Nav</Text>
+                            <Text style={styles.value}>{Sell_Rate}</Text>
                         </View>
                     </View>
                 </View>
@@ -96,26 +91,22 @@ export const TransactionCard = ({ Scheme, TotalAmount, InvestedAmount, RedeemedA
                 <View style={styles.content}>
                     <View style={styles.column}>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Realized Gain/Loss</Text>
-                            <Text style={styles.value}>{RealisedGainLoss}</Text>
+                            <Text style={styles.title}>Total Purchase Amt.</Text>
+                            <Text style={styles.value}>{Purchase_Amount}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Absolute Return</Text>
-                            <Text style={[styles.value, { color: '#47b994' }]}>{AbsoluteReturn}</Text>
-                        </View>
-                        <View style={styles.data}>
-                            <Text style={styles.title}>Wtd. Avg. Days</Text>
-                            <Text style={styles.value}>{WeightedAvgDays}</Text>
+                            <Text style={styles.title}>G/L LT (Cash)</Text>
+                            <Text style={styles.value}>{GL_LT_Debt}</Text>
                         </View>
                     </View>
                     <View style={styles.column}>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Unrealized Gain/Loss</Text>
-                            <Text style={styles.value}>{UnRealisedGainLoss}</Text>
+                            <Text style={styles.title}>Total Sell Amt.</Text>
+                            <Text style={styles.value}>{Sell_Amount}</Text>
                         </View>
                         <View style={styles.data}>
-                            <Text style={styles.title}>Annualized Return</Text>
-                            <Text style={styles.value}>{XIRR}</Text>
+                            <Text style={styles.title}>G/L ST (Cash)</Text>
+                            <Text style={[styles.value, { color: '#47b994' }]}>{GL_ST_Debt}</Text>
                         </View>
                     </View>
                 </View>
@@ -125,7 +116,7 @@ export const TransactionCard = ({ Scheme, TotalAmount, InvestedAmount, RedeemedA
 }
 const styles = StyleSheet.create({
     containerCollapsed: {
-      marginTop: 30,
+      marginTop: 10,
       backgroundColor: '#fff',
       borderRadius: 5,
       padding: 15,
@@ -150,7 +141,6 @@ const styles = StyleSheet.create({
     },
     content: {
       flexDirection: 'row',
-      marginTop: 10
     },
     column: {
       flexDirection: 'column',

@@ -11,7 +11,7 @@ const Transact = ({navigation}) => {
 };
 
 const Container = styled.View`
-flex: 1;
+  flex: 1;
 
   flex-direction: column;
 `;
