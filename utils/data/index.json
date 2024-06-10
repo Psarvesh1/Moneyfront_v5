@@ -1,0 +1,519 @@
+{
+    "card1": [
+        {
+            "icon": "indian-rupee-sign",
+            "title": "Equity",
+            "meta": "For Long Term investment",
+            "background": "#d63846",
+            "type": "FontAwesome6",
+            "name": "rupee",
+            "screen":"Equity"
+        },
+        {
+            "icon": "credit-card-alt",
+            "title": "Debt",
+            "meta": "Earn more than FD Returns",
+            "background": "#5ea3e7",
+            "type": "FontAwesome",
+            "name": "debt",
+            "screen":"Debt"
+        },
+        {
+            "icon": "code-branch",
+            "title": "Hybrid",
+            "meta": "Mix of debt and equity",
+            "background": "#de7261",
+            "type": "FontAwesome6",
+            "name": "plant",
+            "screen":"Hybrid"
+        },
+        {
+            "title": "Tax Saving",
+            "meta": "Deduction available under section 80C",
+            "background": "#eac22f",
+            "type": "FontAwesome6",
+            "name": "taxsaving",
+            "screen":"TaxSaving"
+        }
+    ],
+    "card2": [
+        {
+            "title": "High Risk, High Returns",
+            "meta": "Volatile schemes with higher than market rate of returns",
+            "background": "#6650bf",
+            "type": "FontAwesome",
+            "source": "./rupee-2.png",
+            "name": "risk",
+            "screen":"highrisk"
+        },
+        {
+            "title": "Balance Risk & Returns",
+            "meta": "Schemes which balance stability and rate of returns.",
+            "background": "#eac22f",
+            "source": "./rupee-2.png",
+            "name": "piechart",
+            "screen":"balancerisk"
+        },
+        {
+            "title": "Low Risk, Low Returns",
+            "meta": "Safer investment options.",
+            "background": "#a954df",
+            "type": "AntDesign",
+            "name": "arrowdown",
+            "screen":"lowrisk"
+        }
+    ],
+    "card3": [
+        {
+            "icon": "money-bill-alt",
+            "title": "Bonds",
+            "meta": "Additional Product Offerings to diversity your investment",
+            "background": "#fff",
+            "type": "FontAwesome5",
+            "name": "certificate",
+            "screen":"Bonds"
+        },
+        {
+            "icon": "piggy-bank",
+            "title": "National Pension Scheme",
+            "meta": "Saving for Retirement is an important aspect of Financial Planning.",
+            "background": "#fff",
+            "type": "FontAwesome6",
+            "name": "pension",
+            "screen": "NPSScreen"
+        }
+    ],
+    "Transact": [
+        {
+            "name": "Buy_More",
+            "title": "Buy More"
+        },
+        {
+            "name": "Redeem",
+            "title": "Redeem"
+        },
+        {
+            "name": "SIP",
+            "title": "SWP"
+        },
+        {
+            "name": "STP",
+            "title": "STP"
+        },
+        {
+            "name": "Switch",
+            "title": "Switch Schemes"
+        }
+    ],
+    "transactCard": [
+        {
+            "title": "Lumpsum",
+            "meta": "One-time Lumpsum Investment",
+            "background": "#04668b",
+            "name": "lumpsum",
+            "screen": "Lumpsum"
+        },
+        {
+            "title": "SIP",
+            "meta": "Start a systematic Investment Plan (SIP)",
+            "background": "#047f8f",
+            "name": "sipicon",
+            "screen": "SipScheme"
+        },
+        {
+            "title": "NFO",
+            "meta": "Invest in a New Fund Offer(NFO)",
+            "background": "#00a996",
+            "name": "star",
+            "screen": "NFO"
+        },
+        {
+            "title": "FMP",
+            "meta": "Invest in a portfolio of Debt securities to be held till the pre-defined maturity date.",
+            "background": "#02c098",
+            "name": "rupee2",
+            "screen": "FMP"
+        }
+    ],
+    "buymore": [
+        {
+            "title": "Canara Robeco Bluechip Equity Fund Growth Direct Plan",
+            "units": 186.787,
+            "market_value": "11,306.22"
+        },
+        {
+            "title": "Canara Robeco Bluechip Equity Fund Growth Direct Plan",
+            "units": 186.787,
+            "market_value": "11,306.22"
+        },
+        {
+            "title": "Canara Robeco Bluechip Equity Fund Growth Direct Plan",
+            "units": 186.787,
+            "market_value": "11,306.22"
+        },
+        {
+            "title": "Canara Robeco Bluechip Equity Fund Growth Direct Plan",
+            "units": 186.787,
+            "market_value": "11,306.22"
+        },
+        {
+            "title": "Canara Robeco Bluechip Equity Fund Growth Direct Plan",
+            "units": 186.787,
+            "market_value": "11,306.22"
+        }
+    ],
+    "results": [
+        {
+            "title": "Axis Global Equity Alpha Fund of Fund Growth Direct Plan"
+        },
+        {
+            "title": "Axis Global Equity Alpha Fund of Fund Growth Direct Plan"
+        },
+        {
+            "title": "Axis Global Equity Alpha Fund of Fund Growth Direct Plan"
+        },
+        {
+            "title": "Axis Global Equity Alpha Fund of Fund Growth Direct Plan"
+        }
+    ],
+    "order": [
+        {   
+            "date":"2024-01-25",
+            "title": "Bandhan Nifty 50 Index Fund Growth Direct Plan",
+            "purchase": "Fresh Purchase",
+            "status": "Cancelled",
+            "units": "0",
+            "amount": "1800000"
+        },
+        {   
+            "date":"2024-01-25",
+            "title": "Bandhan Nifty 50 Index Fund Growth Direct Plan",
+            "purchase": "Fresh Purchase",
+            "status": "Cancelled",
+            "units": "0",
+            "amount": "1800000"
+        }
+    ],
+    "lupmsum": [
+        {
+            "title": "Franklin India Flexi Cap Fund Growth Direct Plan",
+            "type": "Equity",
+            "min": "500",
+            "nav": "1485.8661"
+        },
+        {
+            "title": "Franklin India Flexi Cap Fund Growth Direct Plan",
+            "type": "Equity",
+            "min": "500",
+            "nav": "1485.8661"
+        },
+        {
+            "title": "Franklin India Flexi Cap Fund Growth Direct Plan",
+            "type": "Equity",
+            "min": "500",
+            "nav": "1485.8661"
+        },
+        {
+            "title": "Franklin India Flexi Cap Fund Growth Direct Plan",
+            "type": "Equity",
+            "min": "500",
+            "nav": "1485.8661"
+        }
+    ],
+    "orderBook": [
+        {
+            "amount": "500",
+            "installments": "Monthly",
+            "frequency": "Monthly",
+            "register": "2022-10-25",
+            "start_date": "25 Oct 2022",
+            "end_date": "25 Sept 2023"
+        },
+        {
+            "amount": "500",
+            "installments": "Monthly",
+            "frequency": "Monthly",
+            "register": "2022-10-25",
+            "start_date": "25 Oct 2022",
+            "end_date": "25 Sept 2023"
+        }
+    ],
+    "NFO": [
+        {
+            "title": "Groww Banking and Financial Services Fund Growth Direct Plan",
+            "type": "Dividend",
+            "min_amount": "500"
+        },
+        {
+            "title": "Groww Banking and Financial Services Fund Growth Direct Plan",
+            "type": "Dividend",
+            "min_amount": "500"
+        },
+        {
+            "title": "Groww Banking and Financial Services Fund Growth Direct Plan",
+            "type": "Dividend",
+            "min_amount": "500"
+        },
+        {
+            "title": "Groww Banking and Financial Services Fund Growth Direct Plan",
+            "type": "Dividend",
+            "min_amount": "500"
+        },
+        {
+            "title": "Groww Banking and Financial Services Fund Growth Direct Plan",
+            "type": "Dividend",
+            "min_amount": "500"
+        }
+    ],
+    "account": [
+        {
+            "title": "User # 481919"
+        }
+    ],
+    "bonds": [
+        {
+            "bonds_name" : "Our Favourites",
+            "desc": "These are the most preferred papers by our clients.",
+            "flag_trending": "Trending"
+        },
+        {
+            "bonds_name": "Perpetual/Bank Bonds",
+            "desc": "A perpetual bond is a fixed income security with no maturity date.",
+            "flag_trending": ""
+        },
+        {
+            "bonds_name" : "Corporate Bonds",
+            "desc": "A corporate bond is a debt security issued by a corporation and sold to investors.",
+            "flag_trending": ""
+        },
+        {
+            "bonds_name": "Public Sector Undertaking",
+            "desc": "PSU bonds are medium and long term obligations issued by public sector undertakings.",
+            "flag_trending": ""
+        },
+        {
+            "bonds_name": "State Government Bonds",
+            "desc": "A government bond is issued by a national government, generally with a promise to pay periodic interest payments called coupon payments and to repay the face value on the maturity date.",
+            "flag_trending": ""
+        },
+        {
+            "bonds_name" : "Tax-Free / Capital Gain Bonds",
+            "desc": "Tax Free Bonds are the bonds on which the interest received is fully exempted from tax under Section 10.",
+            "flag_trending": ""
+        }
+    ],
+    "snapshot": [
+        {
+            "title": "Overall - Total",
+            "invested_amount": "88,596",
+            "amount": "Amount Invested",
+            "current_value": "1,09,364",
+            "current": "Current Value",
+            "button": true
+        },
+        {
+            "title": "Today's Change",
+            "invested_amount": "0.175 %",
+            "amount": "Today's Gain",
+            "current_value": "192",
+            "current": "Today's Gain AMT",
+            "button": false
+        },
+        {
+            "title": "Gain/Loss",
+            "invested_amount": "1",
+            "amount": "Realised Gain/Loss",
+            "current_value": "20,768",
+            "current": "Unrealised Gain/Loss",
+            "button": false
+        },
+        {
+            "title": "Dividends",
+            "invested_amount": "- -",
+            "amount": "Dividend Re-Invested",
+            "current_value": "- -",
+            "current": "Dividend Paid Out",
+            "button": false
+        },
+        {
+            "title": "Returns",
+            "invested_amount": "23 %",
+            "amount": "Absolute Return",
+            "current_value": "23 %",
+            "current": "Annualized Return",
+            "button": false
+        },
+
+        {
+            "title": "Savings",
+            "invested_amount": "Rs.30",
+            "amount": "Annualized Savings",
+            "current_value": "Rs.29",
+            "current": "Cumulative Savings",
+            "button": false
+        }
+    ],
+    "holdings":[
+        {
+            "scheme": "ICICI Prudential Liquid Fund Growth Direct Plan",
+            "gain_loss": "18.04",
+            "current_value": "Rs. 218.04"
+        },
+        {
+            "scheme": "HDFC Liquid Fund Growth Direct Plan",
+            "gain_loss": "24.73",
+            "current_value": "Rs. 324.72"
+        }
+    ],
+    "holdingsmodaldata1":[
+        {
+            "title":"Current Portfolio Value",
+            "value": "Rs. 10,078.00"
+        },
+        {
+            "title":"XIRR%(Annualized Return)",
+            "value": "28%"
+        }
+    ],
+    "holdingsmodaldata2" :[
+        {
+            "title":"Unrealised Gain/Loss",
+            "value": "Rs. 12,424.18"
+        },
+        {
+            "title":"Dividend Paid Out",
+            "value": "Rs. 0.00"
+        },
+        {
+            "title":"Dividend Reinvestment",
+            "value": "Rs. 0.00"
+        }
+    ],
+    "reports": [
+        {
+                "name": ""
+        }
+    ],
+    "reportcard1" :[
+        {
+            "title":"Total Purchase Amt.",
+            "value": "₹ 999.94"
+        },
+        {
+            "title":"Total LT Gain/Loss.",
+            "value": "₹ 0.00"
+        },
+        {
+            "title":"Folio",
+            "value": "22482375/79"
+        }
+    ],
+    "reportcard2" :[
+        {
+            "title":"Total Sell Amt.",
+            "value": "₹ 1,000.53",
+            "icon": "false"
+        }
+    ],
+    "mandate": [
+        {
+            "bank_name": "ICICI BANK LTD",
+            "amount": "15000",
+            "account_no": "341801001350",
+            "date_of_reg": "01 Oct 2022",
+            "flag": "active"
+        },
+        {
+            "bank_name": "ICICI BANK LTD",
+            "amount": "15000",
+            "account_no": "341801001350",
+            "date_of_reg": "01 Oct 2022",
+            "flag": "pending"
+        },
+        {
+            "bank_name": "ICICI BANK LTD",
+            "amount": "15000",
+            "account_no": "341801001350",
+            "date_of_reg": "01 Oct 2022",
+            "flag": "pending"
+        }
+    ],
+    "cartsip": [
+        {
+            "id": 1,
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "id": 2,
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "id": 3,
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "id": 4,
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "id": 5,
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        }
+    ],
+    "cartlumpsum": [
+        {
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        },
+        {   
+            "title": "Bandhan Nifty 50 Index Growth Direct Plan",
+            "start_date": "2024-02-05",
+            "months": "120",
+            "installment": "2500",
+            "dividend": "Payout",
+            "folio": "47363272"
+        }
+    ]  
+}
+
+
+
+
+
