@@ -55,8 +55,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
                 return Promise.reject(err)
             })
         }
-
-        originalRequest._retry = true;
+        else{
+            originalRequest._retry = true;
         isRefreshing = true;
 
         const bodyParameters = {
@@ -73,6 +73,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             }).then((response) => {
                 console.log(response)
                 let token = response.data.access_token.toString();
+                console.error(token)
                 // console.log(token)
                 // token = response.data.access_token
                 AsyncStorage.setItem("Token", + token);
@@ -86,6 +87,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             })
             .finally(()=> {isRefreshing: false})
         })
+        }
+        
     }
     return Promise.reject(error)
     }

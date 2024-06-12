@@ -13,7 +13,7 @@ import UserContext from '../../../context/UserContext';
 const SnapData = () => {
   const widthAndHeight = 140
   const series = [88,11,1]
-  const sliceColor = ['#5a69bc', '#fcd202', '#7ad5dd']
+  
 
   let {id, sessionId, authToken} = useContext(AuthContext)
   let {clientActualPortfolio,
@@ -25,9 +25,9 @@ const SnapData = () => {
   
   const [hasInvestment, setHasInvestment] = useState(false)
   const [pie, setPie] = useState([])
-
+  const [legendColor, setLegendColor] = useState()
   const [flag, setFlag] = useState(false)
-
+  const [sliceColor, setSliceColor] = useState(null)
   const config = {
     headers: { Authorization: `Bearer ${authToken}` }
   }
@@ -43,16 +43,43 @@ const SnapData = () => {
         setHasInvestment(true)
         setFlag(true)
         console.log(data.ClientActualPortfolio.Actual)
+        // for(let i = 0; i < data.clientActualPortfolio.Actual.length; i++){
+        //   if(i === 'Equity'){
+        //     console.log('equity hai bc')
+        //   }
+        // }
 
+        // const debt = data.clientActualPortfolio.Actual(item => item.AssetType === 'Debt')
+        // const cash = data.clientActualPortfolio.Actual(item => item.AssetType === 'Cash')
+        // if(equity){
+        //   console.log(equity)
+        // }
       }
     }catch(err){
       console.log(err)
     }
   }
   
+  
   useEffect(()=> {
     if(clientActualPortfolio === null){
       fetchData()
+    }else{
+      const arr1 = ['Equity', 'Debt', 'Cash']
+      const result = clientActualPortfolio.filter(item => arr1.includes(item.AssetType));
+      console.error(result)
+      let i;
+      let color = []
+      for(i = 0; i < clientActualPortfolio.length; i++){
+        if(result[i].AssetType === 'Equity'){
+          color.push('#5a69bc')
+        }else if(result[i].AssetType === 'Debt'){
+          color.push('#fcd202')
+        }else if(result[i].AssetType === 'Cash'){
+          color.push('#7ad5dd')
+        }
+      }
+      setSliceColor(color)
     }
     if(clientActualPortfolio !== null){
       loadPie()
@@ -140,23 +167,40 @@ const SnapData = () => {
         <View style={{backgroundColor: '#8392ab', padding: 12}}>
           <Head>Profile Allocation</Head>
         </View>
-        <PieChart
+        {sliceColor ? <PieChart
           widthAndHeight={widthAndHeight}
           series={series}
           sliceColor={sliceColor}
           coverRadius={0.45}
           coverFill={'#fff'}
           style={{alignSelf: 'center', marginTop: 20}}
-        />
-        <View style={{alignItems: 'center', flexDirection: 'column', marginTop: 10}}>
-        
+        /> : null}
+        {/* <View style={{alignItems: 'center', flexDirection: 'column', marginTop: 10}}>
+        <LegendContainer>
+        <View style={{flexDirection: 'column'}}>
+        </View>
         {clientActualPortfolio && clientActualPortfolio.map((item) => (
-          <LegendContainer>  
-          <Legend style={{borderRadius: 10, backgroundColor: '#5a69bc'}} />
-          <Text style={{textAlign: 'center', marginLeft: 5}}>{item.AssetType} : {item.AllocationPercentage}</Text>
-          </LegendContainer>
-
+          <View style={{flexDirection: 'column'}}>
+                      <Text style={{textAlign: 'center', marginLeft: 5}}>{item.AssetType} : {item.AllocationPercentage}</Text>
+          </View>
         ))}
+        </LegendContainer>
+
+        </View> */}
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+          <View style={{flexDirection: 'column'}}>
+          {sliceColor ?
+          sliceColor.map((item) => (
+          <Legend style={{borderRadius: 10, backgroundColor: item, marginTop: 10}} />
+          )): null}
+          </View>
+          <View style={{flexDirection: 'column'}}>
+          {clientActualPortfolio && clientActualPortfolio.map((item) => (
+          <LegendContainer>  
+          <Text style={{textAlign: 'center', marginLeft: 5, marginTop: 10}}>{item.AssetType} : {item.AllocationPercentage}</Text>
+          </LegendContainer>
+        ))}
+        </View>
 
         </View>
         <MetaContainer>
