@@ -6,6 +6,8 @@ const UserContext = createContext()
 export default UserContext
 
 export const UserProvider = ({children}) => {
+    const [sipData, setSipData] = useState()
+    const [lumpsumData, setLumpsumData] = useState()
     const [portfolioSummary, setPortfolioSummary] = useState(null)
     const [portfolioTransactions, setPortfolioTransactions] = useState(null)
     const [holdingsData, setHoldingsData] = useState()
@@ -31,6 +33,11 @@ export const UserProvider = ({children}) => {
         setClientActualPortfolio(null)
         setClientPortfolio(null)
         setClientSuggestedPortfolio(null)
+        setSipData()
+        setLumpsumData()
+        setClientHoldingSummary(null)
+        setGainLossTransaction(null)
+        setGainLossSummary(null)
     }
     let contextData = {
         portfolioSummary,
@@ -60,7 +67,11 @@ export const UserProvider = ({children}) => {
         gainLossTransaction,
         setGainLossTransaction,
         gainLossSummary,
-        setGainLossSummary
+        setGainLossSummary,
+        lumpsumData,
+        setLumpsumData,
+        sipData,
+        setSipData
     }
     
     return(

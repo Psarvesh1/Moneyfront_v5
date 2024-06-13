@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {Searchbar, Divider} from 'react-native-paper';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
@@ -7,10 +7,28 @@ import data from '../../../utils/data/index.json';
 import {verticalScale, moderateScale } from '../../themes/metrics';
 import { SafeAreaView } from 'react-native';
 import AuthContext from '../../context/AuthContext';
-import { searchSchemes } from '../../utils/api';
+import { getLumpsumSchemeRecommendations, getSipSchemeRecommendations, searchSchemes } from '../../utils/api';
 import routes from '../../router-manager/routes';
 import SearchIcon from 'react-native-vector-icons/Ionicons'
+import UserContext from '../../context/UserContext';
 const Explore = ({navigation}) => {
+  let {id, sessionId} = useContext(AuthContext)
+  let {setSipData, setLumpsumData, lumpsumData, sipData} = useContext(UserContext)
+  const fetchData = async() => {
+    try{
+      const lumpsumData = await getLumpsumSchemeRecommendations({id, sessionId})
+      const sipData = await getSipSchemeRecommendations({id, sessionId})
+      console.log(sipData)
+      setSipData(sipData.RecommendationLists)
+      setLumpsumData(lumpsumData.RecommendationLists)
+    }catch(error){
+      console.log(error)
+    }
+  }
+  useEffect(()=> {
+    
+    fetchData()
+  }, [])
   return (
     <SafeAreaView>
     <Container>

@@ -1,3 +1,7 @@
+import BalanceRisk from "../screens/Explore/BalanceRisk";
+import HighRisk from "../screens/Explore/HighRisk";
+import Hybrid from "../screens/Explore/Hybrid";
+import LowRisk from "../screens/Explore/LowRisk";
 import SchemeDetail from "../screens/Explore/SchemeDetail";
 
 export default {
@@ -14,6 +18,12 @@ export default {
     Account: 'Account',
 
     Equity: 'Equity',
+    Debt: 'Debt',
+    Hybrid: 'Hybrid',
+    TaxSaving: 'TaxSaving',
+    HighRisk: 'HighRisk',
+    BalanceRisk: 'BalanceRisk',
+    LowRisk: 'LowRisk',
     ExploreSIP: 'ExploreSIP',
     Bonds: 'Bonds',
     BondsNPCFaq: 'BondsNPCFaq',

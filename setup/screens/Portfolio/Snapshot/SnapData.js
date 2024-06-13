@@ -11,29 +11,25 @@ import SnapNoData from './SnapNoData';
 import UserContext from '../../../context/UserContext';
 
 const SnapData = () => {
-  const widthAndHeight = 140
-  const series = [88,11,1]
+  const widthAndHeight = 190
   
-
-  let {id, sessionId, authToken} = useContext(AuthContext)
-  let {clientActualPortfolio,
+  let { id, sessionId, authToken } = useContext(AuthContext)
+  let { clientActualPortfolio,
     clientPortfolio,
     clientSuggestedPortfolio,
     setClientPortfolio,
     setClientActualPortfolio,
-    setClientSuggestedPortfolio} = useContext(UserContext)
-  
+    setClientSuggestedPortfolio } = useContext(UserContext)
+
   const [hasInvestment, setHasInvestment] = useState(false)
   const [pie, setPie] = useState([])
-  const [legendColor, setLegendColor] = useState()
   const [flag, setFlag] = useState(false)
   const [sliceColor, setSliceColor] = useState(null)
-  const config = {
-    headers: { Authorization: `Bearer ${authToken}` }
-  }
+  const [pieData, setPieData] = useState(null)
+
   const fetchData = async () => {
-    try{
-      const data = await snapshotApi({id,sessionId,authToken})
+    try {
+      const data = await snapshotApi({ id, sessionId, authToken })
       console.error(data.ClientPortfolio)
       {
         setClientPortfolio(data.ClientPortfolio)
@@ -43,65 +39,83 @@ const SnapData = () => {
         setHasInvestment(true)
         setFlag(true)
         console.log(data.ClientActualPortfolio.Actual)
-        // for(let i = 0; i < data.clientActualPortfolio.Actual.length; i++){
-        //   if(i === 'Equity'){
-        //     console.log('equity hai bc')
-        //   }
-        // }
-
-        // const debt = data.clientActualPortfolio.Actual(item => item.AssetType === 'Debt')
-        // const cash = data.clientActualPortfolio.Actual(item => item.AssetType === 'Cash')
-        // if(equity){
-        //   console.log(equity)
-        // }
       }
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   }
-  
-  
-  useEffect(()=> {
-    if(clientActualPortfolio === null){
+  function roundNumbers(array) {
+
+    // Find the lowest number and round it to the nearest whole value
+    let lowestIndex = 0;
+    let lowest = array[0];
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] < lowest) {
+        lowest = array[i];
+        lowestIndex = i;
+      }
+    }
+    array[lowestIndex] = Math.round(lowest);
+
+    // Find the highest number and remove the decimals
+    let highestIndex = 0;
+    let highest = array[0];
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] > highest) {
+        highest = array[i];
+        highestIndex = i;
+      }
+    }
+    array[highestIndex] = Math.trunc(highest);
+
+    // Round all numbers in the array to the nearest whole value
+    for (let i = 0; i < array.length; i++) {
+      array[i] = Math.round(array[i]);
+    }
+
+    return array;
+  }
+
+  useEffect(() => {
+    if (clientActualPortfolio === null) {
       fetchData()
     }else{
-      const arr1 = ['Equity', 'Debt', 'Cash']
-      const result = clientActualPortfolio.filter(item => arr1.includes(item.AssetType));
-      console.error(result)
-      let i;
-      let color = []
-      for(i = 0; i < clientActualPortfolio.length; i++){
-        if(result[i].AssetType === 'Equity'){
-          color.push('#5a69bc')
-        }else if(result[i].AssetType === 'Debt'){
-          color.push('#fcd202')
-        }else if(result[i].AssetType === 'Cash'){
-          color.push('#7ad5dd')
-        }
-      }
-      setSliceColor(color)
-    }
-    if(clientActualPortfolio !== null){
       loadPie()
     }
   }, [])
 
   const loadPie = () => {
-    let data = []
+    const arr1 = ['Equity', 'Debt', 'Cash']
+    const result = clientActualPortfolio.filter(item => arr1.includes(item.AssetType));
+    console.error(result)
     let i;
-    // console.log('length' +pie.length)
-    for(i = 0;  i < pie.length; i++){
-      data.push(Math.floor(pie[i].AllocationPercentage))
+    let color = []
+    let series = []
+    for (i = 0; i < clientActualPortfolio.length; i++) {
+      if (result[i].AssetType === 'Equity') {
+        color.push('#00688e')
+        series.push(result[i].AllocationPercentage)
+      } else if (result[i].AssetType === 'Debt') {
+        color.push('#ff7300')
+        series.push(result[i].AllocationPercentage)
+      } else if (result[i].AssetType === 'Cash') {
+        color.push('#1aaa2f')
+        series.push(result[i].AllocationPercentage)
+      }
     }
-    // setPie(data)
+    console.log(series)
+
+    let roundedArray = roundNumbers(series)
+
+    setPieData(roundedArray)
+    setSliceColor(color)
+
   }
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-  function removeHyphen(x){
-    return x.toString().replace(/-/g, "")
   }
+  
   const ActivityIndicatorElement = () => {
     return (
       <View style={styles.activityIndicatorStyle}>
@@ -110,11 +124,11 @@ const SnapData = () => {
     );
   };
   const Snapshot = () => {
-    return(
+    return (
       <Container showsVerticalScrollIndicator={false}>
-      <Title>Good Afternoon, Ketan!</Title>
-      <Title style={{marginTop: 10, marginBottom: 30}}>Account #489050</Title>
-      
+        <Title>Good Afternoon, Ketan!</Title>
+        <Title style={{ marginTop: 10, marginBottom: 30 }}>Account #489050</Title>
+
         <SnapCard
           first_title='Amount Invested'
           first_value={clientPortfolio.AmountInvested}
@@ -163,72 +177,64 @@ const SnapData = () => {
           title='Savings'
           flag={false}
         />
-      <Profile>
-        <View style={{backgroundColor: '#8392ab', padding: 12}}>
-          <Head>Profile Allocation</Head>
-        </View>
-        {sliceColor ? <PieChart
-          widthAndHeight={widthAndHeight}
-          series={series}
-          sliceColor={sliceColor}
-          coverRadius={0.45}
-          coverFill={'#fff'}
-          style={{alignSelf: 'center', marginTop: 20}}
-        /> : null}
-        {/* <View style={{alignItems: 'center', flexDirection: 'column', marginTop: 10}}>
-        <LegendContainer>
-        <View style={{flexDirection: 'column'}}>
-        </View>
-        {clientActualPortfolio && clientActualPortfolio.map((item) => (
-          <View style={{flexDirection: 'column'}}>
-                      <Text style={{textAlign: 'center', marginLeft: 5}}>{item.AssetType} : {item.AllocationPercentage}</Text>
+        <Profile>
+          <View style={{ backgroundColor: '#8392ab', padding: 12 }}>
+            <Head>Profile Allocation</Head>
           </View>
-        ))}
-        </LegendContainer>
+          
+          <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
+          {sliceColor && <PieChart
+            widthAndHeight={widthAndHeight}
+            series={pieData}
+            sliceColor={sliceColor}
+            coverRadius={0.45}
+            coverFill={'#fff'}
+            style={{ alignSelf: 'center', marginTop: 20, marginLeft: 30, width: 300,
+              height: 300, }}
 
-        </View> */}
-        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-          <View style={{flexDirection: 'column'}}>
-          {sliceColor ?
-          sliceColor.map((item) => (
-          <Legend style={{borderRadius: 10, backgroundColor: item, marginTop: 10}} />
-          )): null}
+          />}
+            <View style={{ flexDirection: 'column' , marginLeft: 30}}>
+              {sliceColor &&
+                sliceColor.map((item) => (
+                  <Legend style={{ borderRadius: 10, backgroundColor: item, marginTop: 10 }} />
+                ))}
+            </View>
+            <View style={{ flexDirection: 'column' }}>
+              {clientActualPortfolio && clientActualPortfolio.map((item) => (
+                <LegendContainer>
+                  <Text style={{ textAlign: 'center', marginLeft: 5, marginTop: 10 }}>{item.AssetType} : {item.AllocationPercentage}</Text>
+                </LegendContainer>
+              ))}
+            </View>
           </View>
-          <View style={{flexDirection: 'column'}}>
-          {clientActualPortfolio && clientActualPortfolio.map((item) => (
-          <LegendContainer>  
-          <Text style={{textAlign: 'center', marginLeft: 5, marginTop: 10}}>{item.AssetType} : {item.AllocationPercentage}</Text>
-          </LegendContainer>
-        ))}
-        </View>
-
-        </View>
-        <MetaContainer>
-        <Meta>Recommended:</Meta>
-        {clientSuggestedPortfolio && clientSuggestedPortfolio.Suggested.map((item) =>(
-          <>
-          <Meta> {item.AllocationPercentage} %</Meta>
-          <Meta> {item.AssetType} |</Meta>
-          </>
-        ))}
-        </MetaContainer>
-        <View
-          style={{flexDirection: 'row', marginBottom: 30, alignSelf: 'center'}}>
-          <Info>Risk Profile :</Info>
-          <Info style={{color: '#0d6da3'}}> Aggressive</Info>
-        </View>
-      </Profile>
-    </Container>
+          <MetaContainer>
+            <Meta>Recommended:</Meta>
+            {clientSuggestedPortfolio && clientSuggestedPortfolio.Suggested.map((item) => (
+              <>
+                <Meta> {item.AllocationPercentage} %</Meta>
+                <Meta> {item.AssetType} |</Meta>
+              </>
+            ))}
+          </MetaContainer>
+          <View
+            style={{ flexDirection: 'row', marginBottom: 30, alignSelf: 'center' }}>
+            <Info>Risk Profile :</Info>
+            <Info style={{ color: '#0d6da3' }}> Aggressive</Info>
+          </View>
+        </Profile>
+      </Container>
     )
   }
-  if(clientActualPortfolio && clientActualPortfolio !== null){
-    return <Snapshot/>
-  }else if(clientActualPortfolio && clientActualPortfolio === null){
-    return <SnapNoData/>
-  }else{
-    return <ActivityIndicatorElement/>
-  } 
+  if (clientActualPortfolio && clientActualPortfolio !== null) {
+    return <Snapshot />
+  } else if (clientActualPortfolio && clientActualPortfolio === null) {
+    return <SnapNoData />
+  } else {
+    return <ActivityIndicatorElement />
+  }
 }
+
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5FCFF',

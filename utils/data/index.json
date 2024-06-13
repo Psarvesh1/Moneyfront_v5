@@ -44,7 +44,7 @@
             "type": "FontAwesome",
             "source": "./rupee-2.png",
             "name": "risk",
-            "screen":"highrisk"
+            "screen":"HighRisk"
         },
         {
             "title": "Balance Risk & Returns",
@@ -52,7 +52,7 @@
             "background": "#eac22f",
             "source": "./rupee-2.png",
             "name": "piechart",
-            "screen":"balancerisk"
+            "screen":"BalanceRisk"
         },
         {
             "title": "Low Risk, Low Returns",
@@ -60,7 +60,7 @@
             "background": "#a954df",
             "type": "AntDesign",
             "name": "arrowdown",
-            "screen":"lowrisk"
+            "screen":"LowRisk"
         }
     ],
     "card3": [

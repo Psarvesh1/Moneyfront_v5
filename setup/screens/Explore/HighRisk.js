@@ -1,32 +1,59 @@
-import * as React from 'react';
-import { View, useWindowDimensions, Text } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { useWindowDimensions, Text, View } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import styled from 'styled-components';
-import SIPCard from '../../../Components/SIPCard';
+import SIPCard from '../../components/SIPCard';
+import LumsumCard from '../../components/LumpsumCard';
 import data from '../../../utils/data/index.json'
+import { verticalScale, moderateScale } from '../../themes/metrics';
+import { getLumpsumSchemeRecommendations } from '../../../utils/api';
+import AuthContext from '../../context/AuthContext';
+import UserContext from '../../context/UserContext';
 
-const SecondRoute = () => (
+const SecondRoute = () => {
+  const [equity, setEquity] = useState()
+  let {sipData} = useContext(UserContext)
+  const filterData = async () => {
+    let result = sipData.filter(item => item.Risk === 'Very High')
+    setEquity(result)
+    // console.log(result)
+    console.error(equity)
+  }
+  useEffect(()=> {
+      filterData()
+  }, [])
+  return(
   <Container>
-    {data.lupmsum.map((data, key) => (
+    {equity && equity.map((data, key) => (
       <SIPCard
-        title={data.title}
-        nav={data.nav}
-        type={data.type}
-        min={data.min}
+        title={data.SchemeName}
+        nav={data.NAVRS}
+        type={data.Category}
+        min={data.MININVT}
       />
     ))}
   </Container>
-);
+  )
+}
 
 const FirstRoute = () => {
+  const [debt, setDebt] = useState()
+  let {lumpsumData} = useContext(UserContext)
+  const filterData = async () => {
+    let result =  lumpsumData.filter(item => item.Risk === 'Very High')
+    setDebt(result)
+  }
+  useEffect(() => {
+      filterData()
+  }, [])
   return (
     <Container>
-      {data.lupmsum.map(data => (
-        <SIPCard
-          title={data.title}
-          nav={data.nav}
-          type={data.type}
-          min={data.min}
+      {debt && debt.map((data, key) => (
+        <LumsumCard
+          title={data.SchemeName}
+          nav={data.NAVRS}
+          type={data.Category}
+          min={data.MININVT}
         />
       ))}
     </Container>
@@ -46,8 +73,10 @@ export default function HighRisk() {
     {key: 'first', title: 'Lumpsum'},
     {key: 'second', title: 'SIP'},
   ]);
+  let {id, sessionId} = React.useContext(AuthContext)
 
   return (
+    <View style={{flex: 1}}>
     <TabView
       navigationState={{index, routes}}
       renderScene={renderScene}
@@ -60,23 +89,24 @@ export default function HighRisk() {
             <Text
               style={{
                 color: 'black',
-                margin: 8,
-                fontSize: 16,
+                margin: verticalScale(8),
+                fontSize: moderateScale(16),
                 fontWeight: 600,
               }}>
               {route.title}
             </Text>
           )}
-          indicatorStyle={{backgroundColor: 'gray', height: 5}}
+          indicatorStyle={{backgroundColor: 'gray', height: verticalScale(5)}}
           style={{backgroundColor: '#fff', borderColor: 'blue'}}
         />
       )} // <-- add this line
     />
+    </View>
   );
 }
 
 const Container = styled.ScrollView`
-    flex: 1;
+    padding: 0;
     backgroundColor: #EAEBEB;
 `  
 

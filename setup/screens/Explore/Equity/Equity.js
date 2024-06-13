@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useWindowDimensions, Text, View } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import styled from 'styled-components';
@@ -6,34 +6,54 @@ import SIPCard from '../../../components/SIPCard';
 import LumsumCard from '../../../components/LumpsumCard';
 import data from '../../../../utils/data/index.json'
 import { verticalScale, moderateScale } from '../../../themes/metrics';
-import { getSchemeRecommendations } from '../../../utils/api';
+import { getLumpsumSchemeRecommendations } from '../../../utils/api';
 import AuthContext from '../../../context/AuthContext';
+import UserContext from '../../../context/UserContext';
 
-
-
-const SecondRoute = () => (
-  
+const SecondRoute = () => {
+  const [equity, setEquity] = useState()
+  let {sipData} = useContext(UserContext)
+  const filterData = async () => {
+    let result = sipData.filter(item => item.Category === 'equity')
+    setEquity(result)
+    // console.log(result)
+    console.error(equity)
+  }
+  useEffect(()=> {
+      filterData()
+  }, [])
+  return(
   <Container>
-    {data.lupmsum.map((data, key) => (
+    {equity && equity.map((data, key) => (
       <SIPCard
-        title={data.title}
-        nav={data.nav}
-        type={data.type}
-        min={data.min}
+        title={data.SchemeName}
+        nav={data.NAVRS}
+        type={data.Category}
+        min={data.MININVT}
       />
     ))}
   </Container>
-);
+  )
+}
 
 const FirstRoute = () => {
+  const [debt, setDebt] = useState()
+  let {lumpsumData} = useContext(UserContext)
+  const filterData = async () => {
+    let result =  lumpsumData.filter(item => item.Category === 'equity')
+    setDebt(result)
+  }
+  useEffect(() => {
+      filterData()
+  }, [])
   return (
     <Container>
-      {data.lupmsum.map(data => (
+      {debt && debt.map((data, key) => (
         <LumsumCard
-          title={data.title}
-          nav={data.nav}
-          type={data.type}
-          min={data.min}
+          title={data.SchemeName}
+          nav={data.NAVRS}
+          type={data.Category}
+          min={data.MININVT}
         />
       ))}
     </Container>
@@ -54,18 +74,6 @@ export default function Equity() {
     {key: 'second', title: 'SIP'},
   ]);
   let {id, sessionId} = React.useContext(AuthContext)
-  const fetchData = async() => {
-    try{
-      const data = await getSchemeRecommendations({id, sessionId})
-      console.log(data)
-    }catch(error){
-      console.log(error)
-    }
-  }
-
-  React.useEffect(() => {
-    fetchData()
-  }, [])
 
   return (
     <View style={{flex: 1}}>

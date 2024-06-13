@@ -14,7 +14,7 @@ const SecondRoute = () => {
   const [equity, setEquity] = useState()
   let {sipData} = useContext(UserContext)
   const filterData = async () => {
-    let result = sipData.filter(item => item.Category === 'hybrid')
+    let result = sipData.filter(item => item.Category === 'ELSS')
     setEquity(result)
     // console.log(result)
     console.error(equity)
@@ -40,7 +40,7 @@ const FirstRoute = () => {
   const [debt, setDebt] = useState()
   let {lumpsumData} = useContext(UserContext)
   const filterData = async () => {
-    let result =  lumpsumData.filter(item => item.Category === 'hybrid')
+    let result =  lumpsumData.filter(item => item.Category === 'ELSS')
     setDebt(result)
   }
   useEffect(() => {
@@ -65,7 +65,7 @@ const renderScene = SceneMap({
   second: SecondRoute,
 });
 
-export default function Hybrid() {
+export default function TaxSaving() {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);

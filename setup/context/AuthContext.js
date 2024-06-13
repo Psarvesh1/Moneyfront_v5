@@ -19,7 +19,6 @@ export const AuthProvider = ({children}) => {
         let id = await AsyncStorage.getItem('Id') ? await AsyncStorage.getItem('Id'): null
         let sId = await AsyncStorage.getItem('sId') ? await AsyncStorage.getItem('sId'): null
         let user = await AsyncStorage.getItem('user') ? await AsyncStorage.getItem('user'): null
-        console.error('useEffect' +user)
         setAuthToken(token)
         setId(id)
         setSessionId(sId)
@@ -109,7 +108,7 @@ export const AuthProvider = ({children}) => {
             sId = response.data.SessionId
             let result = response.data.ApplicantData[0]
             Id = result.Id.toString()
-            console.error(result)
+            
             // console.log(response.data.ApplicantData[0])
             
             setIsAuth(true)

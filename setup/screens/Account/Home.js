@@ -17,10 +17,6 @@ import UserContext from '../../context/UserContext'
 const Account = () => {
   let {user, setIsAuth, isAuth, setId} = useContext(AuthContext)
   let {removeUser} = useContext(UserContext)
-    useEffect(() => {
-      console.log('user' + user.Name)
-      // console.log(user.Name)
-    }, [])
     const navigation = useNavigation()
     let {logoutUser} = useContext(AuthContext)
     let {id} = useContext(AuthContext)

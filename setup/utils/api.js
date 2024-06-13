@@ -235,12 +235,51 @@ export const getSchemeInvestmentDetail = async({id, sessionId, SchemeCode}) => {
     return result
 }
 
-export const getSchemeRecommendations = async ({id, sessionId}) => {
+export const getLumpsumSchemeRecommendations = async ({id, sessionId}) => {
+    let SchemeType = 'L'
+
+    let page = 1
+
+    let row = 1
+
+    let sortBy = 'scheme'
+
+    let sorDir = 'asc'
+
+
     const data = `${id}|${sessionId}`
 
     const encryptedData = Encrypt(data, process.env.key)
 
     const url = `${process.env.API_BASE_URL}/api/Schemes/GetSchemeRecommendations`
+    const bodyParameters = {
+        ParamValue : encryptedData
+    }
+
+    console.error('something' +encryptedData)
+    
+    let result = null
+    await api.post(
+        url,
+        bodyParameters,
+        // config
+    ).then(function(response){
+        result  = response.data
+    }).catch(function(error){
+        console.log(error.message)
+    })
+    // console.log('dada'+ result.AbsoluteReturn)
+    return result
+}
+
+export const getSipSchemeRecommendations = async ({id, sessionId}) => {
+    let SchemeType = 'SIP'
+
+    const data = `${id}|${sessionId}|${SchemeType}`
+
+    const encryptedData = Encrypt(data, process.env.key)
+
+    const url = `${process.env.API_BASE_URL}/api/Schemes/GetSchemeRecommendation`
     const bodyParameters = {
         ParamValue : encryptedData
     }

@@ -5,6 +5,8 @@ import ImageRoutes from './ImageRoutes'
 
 import BottomNavigation from './BottomNavigation'
 import Equity from '../screens/Explore/Equity/Equity'
+import Debt from '../screens/Explore/Debt'
+import Hybrid from '../screens/Explore/Hybrid'
 // import ExploreSIP from '../screens/Explore/Equity/ExploreSIP'
 import Bonds from '../screens/Explore/Bond|NPS/Bonds'
 import BondsNPCFaq from '../screens/Explore/Bond|NPS/BondNPCFaq'
@@ -43,6 +45,10 @@ import GainLossReport from '../screens/Portfolio/Reports/GainLossReport'
 import SearchScheme from '../screens/Explore/SearchScheme'
 import SchemeDetail from '../screens/Explore/SchemeDetail'
 import TransactionList from '../screens/Portfolio/Reports/TransactionList'
+import TaxSaving from '../screens/Explore/TaxSaving'
+import HighRisk from '../screens/Explore/HighRisk'
+import BalanceRisk from '../screens/Explore/BalanceRisk'
+import LowRisk from '../screens/Explore/LowRisk'
 const AuthNavigation = (Stack) => {
   return (
     <> 
@@ -50,6 +56,24 @@ const AuthNavigation = (Stack) => {
         headerShown: false
       }} />
       <Stack.Screen name={routes.Equity} component={Equity} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.Debt} component={Debt} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.Hybrid} component={Hybrid} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.TaxSaving} component={TaxSaving} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.HighRisk} component={HighRisk} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.BalanceRisk} component={BalanceRisk} options={{
+        headerShown: true, headerBackTitle: 'Explore'
+      }} />
+      <Stack.Screen name={routes.LowRisk} component={LowRisk} options={{
         headerShown: true, headerBackTitle: 'Explore'
       }} />
       {/* <Stack.Screen name={routes.ExploreSIP} component={ExploreSIP} options={{ headerShown: true, headerBackTitle: 'Explore', headerTitle: 'SIP' }} /> */}

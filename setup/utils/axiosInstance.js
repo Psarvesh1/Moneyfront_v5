@@ -41,22 +41,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
     api.interceptors.response.use( function(response){
         return response
-    },function(error){
+    },async function(error){
         const originalRequest = error.config;
         if(error.response.status === 401 && !originalRequest._retry){
         console.log('interceptor')
         if(isRefreshing){
-            return new Promise(function(resolve, reject){
-                failedQueue.push({resolve, reject})
-            }).then(token => {
-                originalRequest.headers['Authorization'] = 'Bearer '+ token;
-                return api(originalRequest)
-            }).catch(err => {
-                return Promise.reject(err)
-            })
+            try {
+                const token = await new Promise(function (resolve, reject) {
+                    failedQueue.push({ resolve, reject });
+                });
+                originalRequest.headers['Authorization'] = 'Bearer ' + token;
+                return await api(originalRequest);
+            } catch (err) {
+                return await Promise.reject(err);
+            }
         }
-        else{
-            originalRequest._retry = true;
+
+        originalRequest._retry = true;
         isRefreshing = true;
 
         const bodyParameters = {
@@ -73,7 +74,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             }).then((response) => {
                 console.log(response)
                 let token = response.data.access_token.toString();
-                console.error(token)
                 // console.log(token)
                 // token = response.data.access_token
                 AsyncStorage.setItem("Token", + token);
@@ -87,12 +87,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
             })
             .finally(()=> {isRefreshing: false})
         })
-        }
-        
     }
     return Promise.reject(error)
     }
 )
 
 export default api
-    // Create a new axios instance

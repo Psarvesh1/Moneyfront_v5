@@ -69,10 +69,7 @@ const handleSubmit = async () => {
       }
       setIsLoading(false)
       console.error(Id)
-      let date = '2024-05-22'
-      let redeem = 'Y'
-      let type= 'AMC'
-
+    
       const encryptedData = Encrypt(data, process.env.key);
     
       console.error(encryptedData)
